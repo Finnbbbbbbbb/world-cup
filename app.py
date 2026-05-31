@@ -6,8 +6,10 @@ app=Flask(__name__)
 @app.route("/")
 def main():
     df=pd.read_csv("static/csv/WorldCupMatches.csv")
-    print(df)
-    return render_template("index.html",table=df.to_html(classes="table table=-striped",index=False))
+    data_list=df.to_dict(orient="records")
+    columns=df.columns.tolist()
+   
+    return render_template("index.html",table_data=data_list,columns=columns)
 
 
 if __name__=="__main__":

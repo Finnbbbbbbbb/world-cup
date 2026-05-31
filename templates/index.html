@@ -4,12 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FIFA World Cup</title>
-    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}"
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
 </head>
 <body>
     <h1>FIFA World Cup</h1>
+    <p>This is the World Cup Match data</p>
     <div class="table-responsive">
-        {{table|safe}}
+        <table>
+            <thead>
+                <tr>
+                    {% for col in columns %}
+                    <th> {{ col }}</th>
+                    {% endfor %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in table_data %}
+                <tr>
+                    {% for col in columns %}
+                    <td> {{ row[col] }}</td>
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
 
     </div>
     
